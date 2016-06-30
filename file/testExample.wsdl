@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/testExample/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="testExample" targetNamespace="http://www.example.org/testExample/">
+<wsdl:types>
+<xsd:schema targetNamespace="http://www.example.org/testExample/">
+<xsd:element name="NewOperation">
+<xsd:complexType>
+	<xsd:sequence>
+		<xsd:element name="edge_A">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:int">
+					<xsd:minInclusive value="10"/>
+					<xsd:maxInclusive value="30"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
+		<xsd:element name="edge_B">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:int">
+					<xsd:minInclusive value="50"/>
+					<xsd:maxInclusive value="100"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
+		
+	</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="NewOperationResponse">
+<xsd:complexType>
+	<xsd:sequence>
+		<xsd:element name="out" type="xsd:string" />
+		
+	</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+            <xsd:element name="inputPara" type="xsd:string"></xsd:element>
+            <xsd:element name="outputPara" type="xsd:string"></xsd:element>
+        </xsd:schema>
+</wsdl:types>
+<wsdl:message name="NewOperationRequest">
+<wsdl:part element="tns:NewOperation" name="parameters"/>
+</wsdl:message>
+<wsdl:message name="NewOperationResponse">
+<wsdl:part element="tns:NewOperationResponse" name="parameters"/>
+</wsdl:message>
+<wsdl:portType name="testExample">
+<wsdl:operation name="NewOperation">
+<wsdl:input message="tns:NewOperationRequest"/>
+<wsdl:output message="tns:NewOperationResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="testExampleSOAP" type="tns:testExample">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="NewOperation">
+<soap:operation soapAction="http://www.example.org/testExample/NewOperation"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="testExample">
+<wsdl:port binding="tns:testExampleSOAP" name="testExampleSOAP">
+<soap:address location="http://www.example.org/"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
