@@ -450,7 +450,10 @@ public class ComponentBuilder {
 						if (manner == 1) {
 							operationInfo.addInparameter(parameter);
 							CreateConstraintMutant c = new CreateConstraintMutant();
-							constraintMutantList = c.getConstraintMutantList(parameter);
+							//!!!!!!!!!!!!!!!!!!!!!!!
+							constraintMutantList = c.getConstraintMutantList(parameter,operationInfo);
+							
+							
 						} else {
 							operationInfo.addOutparameter(parameter);
 						}
@@ -465,6 +468,9 @@ public class ComponentBuilder {
 
 			// 根据所有参数数据集合生成笛卡尔积，得到测试数据对（参数1测试数据，参数2测试数据，参数3测试数据）
 			if (manner == 1) {
+				System.out.println("--------------------------------------------------------");
+				CreateConstraintMutant c1 = new CreateConstraintMutant();
+				constraintMutantList  = c1.createTestCECMutant(operationInfo);
 				ArrayList OriginalTestCaseList = tdgs.generateOriginalTestCase(testDataList);
 				System.out.println("------OriginalTestCaseList-----");
 				int count = 0;

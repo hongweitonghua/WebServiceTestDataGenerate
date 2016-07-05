@@ -31,9 +31,9 @@ public class OperationInfo {
 	/** The encoding type "document" vs. "rpc" */
 	private String style = "document";
 	/**操作所对应的输入参数,一个参数对应一个ParameterInfo类*/
-	private List inparameters = new ArrayList();
+	private List<ParameterInfo> inparameters = new ArrayList<>();
 	/**操作所对应的输出参数,一个参数对应一个ParameterInfo类*/
-	private List outparameters = new ArrayList();
+	private List<ParameterInfo> outparameters = new ArrayList<>();
 	/**操作所对应的输入消息*/
 	private Message inmessage;
 	/**操作所对应的输出消息*/
@@ -98,7 +98,7 @@ public class OperationInfo {
 		this.inparameters.add(parameter);
 	}
 
-	public List getInparameters() {
+	public List<ParameterInfo> getInparameters() {
 		return inparameters;
 	}
 

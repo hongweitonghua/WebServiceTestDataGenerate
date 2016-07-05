@@ -22,6 +22,14 @@ xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="testExample" targetNamespace=
 				</xsd:restriction>
 			</xsd:simpleType>
 		</xsd:element>
+		<xsd:element name="edge_C">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:int">
+					<xsd:minInclusive value="150"/>
+					<xsd:maxInclusive value="200"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:element>
 		
 	</xsd:sequence>
 </xsd:complexType>

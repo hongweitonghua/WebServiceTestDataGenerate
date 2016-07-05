@@ -8,6 +8,7 @@ import java.util.Random;
 import wsclient.domain.Constraint;
 
 public class TestDataGenerateSupport {
+	public static int Button = Integer.MIN_VALUE, Top = Integer.MAX_VALUE;
 	/**
 	 * 生成初始测试用例集合List
 	 * 
@@ -57,36 +58,36 @@ public class TestDataGenerateSupport {
 	 *            每个参数的约束列表
 	 */
 	public ArrayList generateTestDataSet(ArrayList<Constraint> alist) {
-		int min = Integer.MIN_VALUE, max = Integer.MAX_VALUE;
+		
 		int flag = 0;// flag标记为1，代表为范围约束；flag为2，代表为长度约束
 		for (Constraint constraint : alist) {
 			String name = constraint.getConstraintName();
 			String value = constraint.getConstraintValue();
 			if ("minInclusive".equals(name) || "minExclusive".equals(name)) {
 				flag = 1;
-				min = Integer.parseInt(value);
+				Button = Integer.parseInt(value);
 			}
 			if ("maxInclusive".equals(name) || "maxExclusive".equals(name)) {
 				flag = 1;
-				max = Integer.parseInt(value);
+				Top = Integer.parseInt(value);
 			}
 			if ("length".equals(name)) {
 				flag = 2;
-				min = max = Integer.parseInt(value);
+				Button = Top = Integer.parseInt(value);
 			}
 			if ("minLength".equals(name)) {
 				flag = 2;
-				min = Integer.parseInt(value);
+				Button = Integer.parseInt(value);
 			}
 			if ("maxLength".equals(name)) {
 				flag = 2;
-				max = Integer.parseInt(value);
+				Top = Integer.parseInt(value);
 			}
 		}
 		if (flag == 1) {// 范围约束
-			return generateTestDataByRange(min, max);
+			return generateTestDataByRange(Button, Top);
 		} else if (flag == 2) {// 长度约束
-			return generateTestDataByLength(min, max);
+			return generateTestDataByLength(Button, Top);
 		}
 		return null;
 	}
@@ -159,7 +160,7 @@ public class TestDataGenerateSupport {
 	 *            给定的范围最大值
 	 * @return 在此范围内的随机整数
 	 */
-	private static int getRandomNum(int minNum, int maxNum) {
+	public static int getRandomNum(int minNum, int maxNum) {
 		Random random = new Random();
 		return (Math.abs(random.nextInt()) % (maxNum - minNum + 1)) + minNum;
 	}
@@ -171,7 +172,7 @@ public class TestDataGenerateSupport {
 	 *            指定长度
 	 * @return 随机字符串
 	 */
-	private static String generateLenString(int length) {
+	public static String generateLenString(int length) {
 		char[] cResult = new char[length];
 		int i = 0;
 		while (i < length) {
@@ -194,7 +195,7 @@ public class TestDataGenerateSupport {
 	 * @param length
 	 * @return
 	 */
-	private static String generateLenString(int minLength, int maxLength) {
+	public static String generateLenString(int minLength, int maxLength) {
 		if (minLength > maxLength)
 			return "";
 		int length = getRandomNum(minLength, maxLength); // 生成随机长度

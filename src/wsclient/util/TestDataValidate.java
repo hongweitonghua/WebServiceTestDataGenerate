@@ -46,10 +46,10 @@ public class TestDataValidate {
 			}
 			//遍历约束变异体集合
 			for (ConstraintMutant cm : constraintMutantList) {
-				flag = 0;
+				flag = 0;                                                                                 
 				String paraName = cm.getParaName();
 				ArrayList<Constraint> constraintList = cm.getConstraintList();
-				//遍历约束变异体的每一个约束
+				//遍历约束变异体的每一个约束*-96
 				for (Constraint constraint : constraintList) {
 
 					int constraintValue =  Integer.parseInt(constraint.getConstraintValue());
