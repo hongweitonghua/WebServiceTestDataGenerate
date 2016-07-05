@@ -448,12 +448,7 @@ public class ComponentBuilder {
 						System.out.println("参数类型为:" + parameter.getKind());
 						
 						if (manner == 1) {
-							operationInfo.addInparameter(parameter);
-							CreateConstraintMutant c = new CreateConstraintMutant();
-							//!!!!!!!!!!!!!!!!!!!!!!!
-							constraintMutantList = c.getConstraintMutantList(parameter,operationInfo);
-							
-							
+							operationInfo.addInparameter(parameter);				
 						} else {
 							operationInfo.addOutparameter(parameter);
 						}
@@ -469,8 +464,8 @@ public class ComponentBuilder {
 			// 根据所有参数数据集合生成笛卡尔积，得到测试数据对（参数1测试数据，参数2测试数据，参数3测试数据）
 			if (manner == 1) {
 				System.out.println("--------------------------------------------------------");
-				CreateConstraintMutant c1 = new CreateConstraintMutant();
-				constraintMutantList  = c1.createTestCECMutant(operationInfo);
+				CreateConstraintMutant c = new CreateConstraintMutant();
+				constraintMutantList  = c.getConstraintMutantList(operationInfo);
 				ArrayList OriginalTestCaseList = tdgs.generateOriginalTestCase(testDataList);
 				System.out.println("------OriginalTestCaseList-----");
 				int count = 0;
@@ -491,7 +486,6 @@ public class ComponentBuilder {
 			System.out.println("null is here in the 1 ");
 			return null;
 		}
-
 		XMLType xmlType = null;
 		if (part.getElementName() != null) {
 			String elemName = part.getElementName().getLocalPart();
@@ -515,7 +509,6 @@ public class ComponentBuilder {
 
 	/**
 	 * 返回elementType对应的扩展元素信息，当elementType为“schema”时，则返回schema信息
-	 * 
 	 * @param extensibilityElements
 	 * @param elementType
 	 * @return 返回types的扩展元素信息，是一个Vector数组

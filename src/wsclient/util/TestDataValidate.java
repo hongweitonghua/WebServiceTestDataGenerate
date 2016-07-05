@@ -49,7 +49,7 @@ public class TestDataValidate {
 				flag = 0;                                                                                 
 				String paraName = cm.getParaName();
 				ArrayList<Constraint> constraintList = cm.getConstraintList();
-				//遍历约束变异体的每一个约束*-96
+				//遍历约束变异体的每一个约束
 				for (Constraint constraint : constraintList) {
 
 					int constraintValue =  Integer.parseInt(constraint.getConstraintValue());
@@ -74,6 +74,14 @@ public class TestDataValidate {
 							flag++;
 						}
 					}
+					if("totalDigits".equals(constraintName)){
+						String str = perTestDataMap.get(paraName)+"";
+						String newStr = str.replace("-", "");
+						if(!(newStr.length()!=constraintValue)){//不满足约束变异体条件，说明能杀死变异体
+							flag++;
+						}
+					}
+					
 				}//for //遍历约束变异体的每一个约束
 				if(flag!=0){	//只要有一个约束条件不满足，即可以杀死变异体
 					//1.此测试数据加入到finalTestDataList
